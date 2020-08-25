@@ -30,8 +30,8 @@ btn.addEventListener('click', function() {
 
 function init() {
     console.log('Start Game');
-    renderHP.apply(character);
-    renderHP.apply(enemy);
+    renderHP.call(character);
+    renderHP.call(enemy);
    
 }
 
@@ -58,7 +58,7 @@ function changeHP(count) {
         this.damageHP -= count;
     }
    
-    renderHP.apply(this);
+    renderHP.call(this);
 }
 
 function random(num) {
