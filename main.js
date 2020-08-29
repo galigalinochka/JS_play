@@ -59,19 +59,14 @@ function renderProgressbarHP() {
 
 function changeHP(count) {
     this.damageHP -= count;
-
     
     const log = this === enemy ? generateLog(this, character, count) : generateLog(this, enemy, count);
+        
+    const msg = document.createElement('p');
+       
+    msg.innerText = log;
+    logs.insertBefore(msg, logs.children[0]);
     
-    
-        const msg = document.createElement('p');
-        msg.classList.add('frame');
-        msg.innerText = log;
-        logs.insertBefore(msg, logs.children[0]);
-    
-  
-    
-
     if(this.damageHP <= 0) {
         this.damageHP = 0;
         alert('Бедный ' + this.name + ' проиграл бой!');
@@ -88,21 +83,21 @@ function random(num) {
 function generateLog(firstPerson, secondPerson, count) {
     
     const { defaultHP, damageHP } = firstPerson;
-    const $1name= firstPerson.name;
-    const $2name= secondPerson.name;
+    const firstPersonName= firstPerson.name;
+    const secondtPersonName= secondPerson.name;
     const statistic = `${count} [${damageHP}/${defaultHP}]`;
     
     const logs = [
-        `${$1name} поперхнулся, и за это ${$2name} с испугу приложил прямой удар коленом в лоб врага.-${statistic}`,
-        `${$1name} вспомнил что-то важное, но неожиданно ${$2name}, не помня себя от испуга, ударил в предплечье врага.-${statistic}`,
-        `${$1name} забылся, но в это время наглый ${$2name}, приняв волевое решение, неслышно подойдя сзади, ударил.-${statistic}`,
-        `${$1name} пришел в себя, но неожиданно ${$2name} случайно нанес мощнейший удар.-${statistic}`,
-        `${$1name} поперхнулся, но в это время ${$2name} нехотя раздробил кулаком \<вырезанно цензурой\> противника.-${statistic}`,
-        `${$1name} удивился, а ${$2name} пошатнувшись влепил подлый удар.-${statistic}`,
-        `${$1name} высморкался, но неожиданно ${$2name} провел дробящий удар.-${statistic}`,
-        `${$1name} пошатнулся, и внезапно наглый ${$2name} беспричинно ударил в ногу противника.-${statistic}`,
-        `${$1name} расстроился, как вдруг, неожиданно ${$2name} случайно влепил стопой в живот соперника.-${statistic}`,
-        `${$1name} пытался что-то сказать, но вдруг, неожиданно ${$2name} со скуки, разбил бровь сопернику.-${statistic}`,
+        `${firstPersonName} поперхнулся, и за это ${secondtPersonName} с испугу приложил прямой удар коленом в лоб врага.-${statistic}`,
+        `${firstPersonName} вспомнил что-то важное, но неожиданно ${secondtPersonName}, не помня себя от испуга, ударил в предплечье врага.-${statistic}`,
+        `${firstPersonName} забылся, но в это время наглый ${secondtPersonName}, приняв волевое решение, неслышно подойдя сзади, ударил.-${statistic}`,
+        `${firstPersonName} пришел в себя, но неожиданно ${secondtPersonName} случайно нанес мощнейший удар.-${statistic}`,
+        `${firstPersonName} поперхнулся, но в это время ${secondtPersonName} нехотя раздробил кулаком \<вырезанно цензурой\> противника.-${statistic}`,
+        `${firstPersonName} удивился, а ${secondtPersonName} пошатнувшись влепил подлый удар.-${statistic}`,
+        `${firstPersonName} высморкался, но неожиданно ${secondtPersonName} провел дробящий удар.-${statistic}`,
+        `${firstPersonName} пошатнулся, и внезапно наглый ${secondtPersonName} беспричинно ударил в ногу противника.-${statistic}`,
+        `${firstPersonName} расстроился, как вдруг, неожиданно ${secondtPersonName} случайно влепил стопой в живот соперника.-${statistic}`,
+        `${firstPersonName} пытался что-то сказать, но вдруг, неожиданно ${secondtPersonName} со скуки, разбил бровь сопернику.-${statistic}`,
     ]; 
 
     return logs[random(logs.length)-1];
