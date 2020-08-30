@@ -40,6 +40,7 @@ body {
     position: relative;
     margin: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -276,6 +277,7 @@ body {
     outline: none !important;
     cursor: pointer;
     font-size: 18px;
+    margin-bottom: 26px;
 
 }
 .button:after {

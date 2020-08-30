@@ -1,11 +1,16 @@
 
 const logs = document.querySelector('#logs');
+const btn = getElById('btn-kick');
+const btnRefresh = getElById('btn-refresh');
+const attemptsLeft = document.createElement('span');
+const attemptsLeft2 = document.createElement('span');
+
+btn.appendChild(attemptsLeft);
+btnRefresh.appendChild(attemptsLeft2);
 
 function getElById(id) {
     return document.getElementById(id);
 }
-
-const btn = getElById('btn-kick');
 
 const character = {
     name: 'Pikachu',
@@ -31,11 +36,33 @@ const enemy = {
     renderProgressbarHP: renderProgressbarHP,
 }
 
-btn.addEventListener('click', function() {
-    console.log('Kick');
+function counter(btnType, maxKlicks) {
+    let count = 0;
+    
+    return function() {
+        
+        count ++;
+        
+        btnType.getElementsByTagName('span')[0].innerText=`Klicks left: ${maxKlicks - count}`;
+
+        if (count >= maxKlicks) {
+            btnType.disabled = true;
+        }  
+    
+    }
+}
+
+const btnKlickCounter = counter(btn, 8);
+const btnRefreshKlickCounter = counter(btnRefresh, 3);
+
+btn.addEventListener('click', () => {
+    btnKlickCounter();
     enemy.changeHP(random(20));
     character.changeHP(random(20));
-});
+});    
+
+btnRefresh.addEventListener('click', () => btnRefreshKlickCounter());
+
 
 function init() {
     console.log('Start Game');
