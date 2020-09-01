@@ -1,3 +1,20 @@
+import Pokemon from './pokemon.js';
+import random from './utils.js';
+
+const player1 = new Pokemon({
+    name: 'Pikachu',
+    defaultHP: 100,
+    damageHP: 100,
+    selectors: 'character',
+});
+
+const player2 = new Pokemon({
+    name: 'Charmander',
+    defaultHP: 100,
+    damageHP: 100,
+    selectors: 'enemy',
+})
+
 const logs = document.querySelector('#logs');
 const btn = getElById('btn-kick');
 const btnRefresh = getElById('btn-refresh');
@@ -9,30 +26,6 @@ btnRefresh.appendChild(attemptsLeft2);
 
 function getElById(id) {
     return document.getElementById(id);
-}
-
-const character = {
-    name: 'Pikachu',
-    defaultHP: 100,
-    damageHP: 100,
-    elHP: getElById('health-character'),
-    elProgressbar: getElById('progressbar-character'),
-    changeHP: changeHP,
-    renderHP: renderHP,
-    renderHPLife: renderHPLife,
-    renderProgressbarHP: renderProgressbarHP,
-}
-
-const enemy = {
-    name: 'Charmander',
-    defaultHP: 100,
-    damageHP: 100,
-    elHP: getElById('health-enemy'),
-    elProgressbar: getElById('progressbar-enemy'),
-    changeHP: changeHP,
-    renderHP: renderHP,
-    renderHPLife: renderHPLife,
-    renderProgressbarHP: renderProgressbarHP,
 }
 
 function counter(btnType, maxKlicks) {
@@ -52,60 +45,39 @@ function counter(btnType, maxKlicks) {
     }
 }
 
-const btnKlickCounter = counter(btn, 8);
+const btnKlickCounter = counter(btn, 12);
 const btnRefreshKlickCounter = counter(btnRefresh, 3);
 
 btn.addEventListener('click', () => {
     btnKlickCounter();
-    enemy.changeHP(random(20));
-    character.changeHP(random(20));
+    player1.changeHP(random(20), function(count) {
+        console.log('Some changes after HP', count);
+        console.log(generateLog(player1, player2, count));
+
+    });
+    player2.changeHP(random(20));
 });    
 
 btnRefresh.addEventListener('click', () => btnRefreshKlickCounter());
 
-
-function init() {
-    console.log('Start Game');
-    character.renderHP();
-    enemy.renderHP();
-   
-}
-
-function renderHP() {
-    this.renderHPLife();
-    this.renderProgressbarHP();
-}
-
-function renderHPLife() {
-    this.elHP.innerText = this.damageHP + ' / ' + this.defaultHP;
-}
-
-function renderProgressbarHP() {
-    this.elProgressbar.style.width = this.damageHP + '%'
-}
-
-function changeHP(count) {
-    this.damageHP -= count;
-    
-    const log = this === enemy ? generateLog(this, character, count) : generateLog(this, enemy, count);
+// function changeHP(count) {
+//     this.damageHP -= count;
+//     console.log(typeof(changeHP));
+//     const log = this === enemy ? generateLog(this, character, count) : generateLog(this, enemy, count);
         
-    const msg = document.createElement('p');
+//     const msg = document.createElement('p');
        
-    msg.innerText = log;
-    logs.insertBefore(msg, logs.children[0]);
+//     msg.innerText = log;
+//     logs.insertBefore(msg, logs.children[0]);
     
-    if(this.damageHP <= 0) {
-        this.damageHP = 0;
-        alert('Бедный ' + this.name + ' проиграл бой!');
-        btn.disabled = true;
-    }
+//     if(this.damageHP <= 0) {
+//         this.damageHP = 0;
+//         alert('Бедный ' + this.name + ' проиграл бой!');
+//         btn.disabled = true;
+//     }
    
-    this.renderHP();
-}
-
-function random(num) {
-    return Math.ceil(Math.random() * num);
-}
+//     this.renderHP();
+// }
 
 function generateLog(firstPerson, secondPerson, count) {
     
@@ -129,4 +101,3 @@ function generateLog(firstPerson, secondPerson, count) {
 
     return logs[random(logs.length)-1];
 }
-init();
