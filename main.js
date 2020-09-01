@@ -1,4 +1,3 @@
-
 const logs = document.querySelector('#logs');
 const btn = getElById('btn-kick');
 const btnRefresh = getElById('btn-refresh');
@@ -39,6 +38,7 @@ const enemy = {
 function counter(btnType, maxKlicks) {
     let count = 0;
     
+
     return function() {
         
         count ++;
