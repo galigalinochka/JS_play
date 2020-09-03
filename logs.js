@@ -1,8 +1,6 @@
-export function random(num) {
-    return Math.ceil(Math.random() * num);
-}
+import random from './utils.js';
 
-export function generateLog(firstPerson, secondPerson, count) {
+function generateLog(firstPerson, secondPerson, count) {
     
     const { defaultHP, damageHP } = firstPerson;
     const firstPersonName= firstPerson.name;
@@ -26,22 +24,4 @@ export function generateLog(firstPerson, secondPerson, count) {
     return logs[random(logs.length)-1];
 }
 
-export function counter($btn, maxKlicks) {
-    let count = 0;
-    
-
-    return function() {
-        
-        count ++;
-        const attemptsLeft = document.createElement('span');
-        $btn.appendChild(attemptsLeft);
-        $btn.getElementsByTagName('span')[0].innerText=`(${maxKlicks - count})`;
-
-        if (count >= maxKlicks) {
-            $btn.disabled = true;
-        }  
-    
-    }
-}
-
-
+export default generateLog;
