@@ -24,6 +24,7 @@ class Pokemon extends Selectors {
     changeHP = (count, cb) => {
         this.damageHP -= count;
         const $btn = document.querySelectorAll('.button');
+        
         console.log($btn);
 
         if(this.damageHP <= 0) {
@@ -31,7 +32,12 @@ class Pokemon extends Selectors {
             alert('Бедный ' + this.name + ' проиграл бой!');
             $btn.forEach(item => 
                 item.disabled = true);
-
+        const $control = document.querySelector('.control');
+        const $btnNewGame = document.createElement('button');
+        $btnNewGame.classList.add('button-restart');
+        $btnNewGame.innerText = 'Play again';
+        console.log($btnNewGame);
+        $control.appendChild($btnNewGame);
     }
        
         this.renderHP();

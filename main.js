@@ -8,6 +8,7 @@ const $control = document.querySelector('.control');
 function randomPokemon() {
     return pokemons[(Math.ceil(Math.random() * pokemons.length))];   
 }
+
 const randomHero = randomPokemon();
 
 console.log(randomHero);

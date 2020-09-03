@@ -280,6 +280,8 @@ body {
     margin-bottom: 26px;
 
 }
+
+
 .button:after {
     content: "";
     position: absolute;
@@ -301,6 +303,27 @@ body {
     background: -webkit-gradient(linear, left top, left bottom, from(#ffd78e), to(#ffc55b));
     background: linear-gradient(to bottom, #ffd78e, #ffc55b);
     box-shadow: 0 0 5px 2px white, 0 0 15px #ffe9c1, 0 3px 5px -2px rgba(0, 0, 0, 0.2);
+}
+
+.button-restart {
+    position: relative;
+    background: rgb(17, 226, 111);
+    border: 2px solid #ffc55b;
+    border-radius: 10px;
+    min-height: 30px;
+    width: 160px;
+    vertical-align: middle;
+    padding: 12px 10px;
+    outline: none !important;
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 26px;
+}
+
+.button-restart:hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(#8bf1be), to(#34e03c));
+    background: linear-gradient(to bottom, #4fc74f, #28b32f);
+    border-color: white;
 }
 
 .candy {
