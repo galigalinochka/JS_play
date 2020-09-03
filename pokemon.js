@@ -38,18 +38,6 @@ class Pokemon extends Selectors {
         cb && cb(count);
     }
 
-    // refreshHP = (count, cb) => {
-    //     this.damageHP += count; 
-        
-    //     if(this.damageHP >= 100) {
-    //         this.damageHP = 100;
-    //         alert('Это максимальный уровень HP Для' + this.name);
-    //     }
-
-    //     this.renderHP();
-    //     cb && cb(count);
-    //}
-
     renderHP = () => {
         this.renderHPLife();
         this.renderProgressbarHP();
@@ -64,7 +52,5 @@ class Pokemon extends Selectors {
         this.elProgressbar.style.width = this.damageHP*100/this.defaultHP + '%'
     }
 }
-
-
 
 export default Pokemon;
