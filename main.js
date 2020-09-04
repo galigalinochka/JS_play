@@ -1,3 +1,7 @@
+window.onload = function () {
+    document.body.classList.add('loaded');
+};
+
 import Pokemon from './pokemon.js';
 import { random, generateLog, counter } from './utils.js';
 import { pokemons } from './pokemons.js';
@@ -10,27 +14,31 @@ function randomPokemon() {
     return pokemons[(Math.ceil(Math.random() * pokemons.length-1))];   
 }
 
-const randomHero = randomPokemon();
+const firstRandomHero = randomPokemon();
+const secondRandomHero = randomPokemon();
 
-//console.log(randomHero.name);
+if ( firstRandomHero.name !== secondRandomHero.name) {
+    const $firstHeroImg = document.getElementById('img-player1');
+    const $secondHeroImg = document.getElementById('img-player2');
 
-const $heroImg = document.getElementById('img-player1');
-//console.log($heroImg);
-$heroImg.src = randomHero.img; 
-const $heroName = document.getElementById('name-player1');
-$heroName.innerText = randomHero.name;
+    $firstHeroImg.src = firstRandomHero.img; 
+    $secondHeroImg.src = secondRandomHero.img;
+
+    const $firstHeroName = document.getElementById('name-player1');
+    const $secondHeroName = document.getElementById('name-player2');
+    $firstHeroName.innerText = firstRandomHero.name;
+    $secondHeroName.innerText = secondRandomHero.name;
+} else {
+   location.reload();
+}
 
 const player1 = new Pokemon({
-    ...randomHero,
+    ...firstRandomHero,
     selectors: 'player1',
 });
 
-console.log(player1);
-
 const player2 = new Pokemon({
-    name: 'Charmander',
-    defaultHP: 300,
-    damageHP: 300,
+    ...secondRandomHero,
     selectors: 'player2',
 });
 
