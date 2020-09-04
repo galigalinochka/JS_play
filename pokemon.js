@@ -38,10 +38,14 @@ class Pokemon extends Selectors {
         $btnNewGame.innerText = 'Play again';
         console.log($btnNewGame);
         $control.appendChild($btnNewGame);
-    }
+
+        $btnNewGame.addEventListener('click', () => location.reload());
+        }
        
         this.renderHP();
         cb && cb(count);
+
+        
     }
 
     renderHP = () => {

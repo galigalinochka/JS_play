@@ -5,16 +5,17 @@ import { pokemons } from './pokemons.js';
 const logs = document.querySelector('#logs');
 const $control = document.querySelector('.control');
 
+
 function randomPokemon() {
-    return pokemons[(Math.ceil(Math.random() * pokemons.length))];   
+    return pokemons[(Math.ceil(Math.random() * pokemons.length-1))];   
 }
 
 const randomHero = randomPokemon();
 
-console.log(randomHero);
+//console.log(randomHero.name);
 
 const $heroImg = document.getElementById('img-player1');
-console.log($heroImg);
+//console.log($heroImg);
 $heroImg.src = randomHero.img; 
 const $heroName = document.getElementById('name-player1');
 $heroName.innerText = randomHero.name;
@@ -52,4 +53,6 @@ player1.attacks.forEach(item => {
         player2.changeHP(item.maxDamage);
     })
     $control.appendChild($btn);
+    
 });
+
