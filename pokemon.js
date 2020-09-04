@@ -2,6 +2,7 @@ class Selectors{
     constructor(name) {
         this.elHP = document.getElementById(`health-${name}`);
         this.elProgressbar = document.getElementById(`progressbar-${name}`);
+        this.elProgressLine = document.querySelector('.health');
         this.$btn = document.querySelector('.button');
         this.btnRefresh = document.getElementById('btn-refresh');
     }
@@ -60,6 +61,13 @@ class Pokemon extends Selectors {
     
     renderProgressbarHP = () => {
         this.elProgressbar.style.width = this.damageHP*100/this.defaultHP + '%'
+        
+        if (this.damageHP <= 250) {
+            this.elProgressbar.classList.add('low');
+
+        } if (this.damageHP <= 100) {
+            this.elProgressbar.classList.add('critical');
+        }
     }
 }
 
