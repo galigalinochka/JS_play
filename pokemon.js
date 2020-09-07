@@ -26,8 +26,6 @@ class Pokemon extends Selectors {
         this.damageHP -= count;
         const $btn = document.querySelectorAll('.button');
         
-        console.log($btn);
-
         if(this.damageHP <= 0) {
             this.damageHP = 0;
             alert('Бедный ' + this.name + ' проиграл бой!');
@@ -44,9 +42,7 @@ class Pokemon extends Selectors {
         }
        
         this.renderHP();
-        cb && cb(count);
-
-        
+        cb && cb(count);   
     }
 
     renderHP = () => {

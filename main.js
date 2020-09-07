@@ -13,24 +13,8 @@ const $control = document.querySelector('.control');
 function randomPokemon() {
     return pokemons[(Math.ceil(Math.random() * pokemons.length-1))];   
 }
-
 const firstRandomHero = randomPokemon();
 const secondRandomHero = randomPokemon();
-
-if ( firstRandomHero.name !== secondRandomHero.name) {
-    const $firstHeroImg = document.getElementById('img-player1');
-    const $secondHeroImg = document.getElementById('img-player2');
-
-    $firstHeroImg.src = firstRandomHero.img; 
-    $secondHeroImg.src = secondRandomHero.img;
-
-    const $firstHeroName = document.getElementById('name-player1');
-    const $secondHeroName = document.getElementById('name-player2');
-    $firstHeroName.innerText = firstRandomHero.name;
-    $secondHeroName.innerText = secondRandomHero.name;
-} else {
-   location.reload();
-}
 
 const player1 = new Pokemon({
     ...firstRandomHero,
@@ -41,6 +25,29 @@ const player2 = new Pokemon({
     ...secondRandomHero,
     selectors: 'player2',
 });
+console.log(player1, player2);
+
+function newGame() {
+    
+    if ( firstRandomHero.name !== secondRandomHero.name) {
+        const $firstHeroImg = document.getElementById('img-player1');
+        const $secondHeroImg = document.getElementById('img-player2');
+        console.log($firstHeroImg);
+
+        $firstHeroImg.src = firstRandomHero.img; 
+        $secondHeroImg.src = secondRandomHero.img;
+    
+        const $firstHeroName = document.getElementById('name-player1');
+        const $secondHeroName = document.getElementById('name-player2');
+        $firstHeroName.innerText = firstRandomHero.name;
+        $secondHeroName.innerText = secondRandomHero.name;
+
+    } else {
+        newGame();
+    }
+};
+
+newGame();
 
 player1.attacks.forEach(item => {
     const $btn = document.createElement('button');
@@ -54,8 +61,10 @@ player1.attacks.forEach(item => {
         btnCount();
         player1.changeHP(item.minDamage, function(count) {
             console.log('Some changes after HP', count);
-            console.log(generateLog(player1, player2, count));
-            
+            const msg = document.createElement('p');
+
+           msg.innerText = generateLog(player1, player2, count);
+           logs.insertBefore(msg, logs.children[0]); 
         });
 
         player2.changeHP(item.maxDamage);
@@ -63,4 +72,4 @@ player1.attacks.forEach(item => {
     $control.appendChild($btn);
     
 });
-
+    
