@@ -4,12 +4,14 @@ class Selectors{
         this.elProgressbar = document.getElementById(`progressbar-${name}`);
         this.elProgressLine = document.querySelector('.health');
         this.$btn = document.querySelector('.button');
-        this.btnRefresh = document.getElementById('btn-refresh');
-    }
+        // this.btnRefresh = document.getElementById('btn-refresh');
+        // this.img = document.getElementById(`img-${name}`);
+        // this.name = document.getElementById(`name-${name}`);
+    } 
 }
 
 class Pokemon extends Selectors {
-    constructor({ name, type, defaultHP, damageHP, attacks = [], selectors }) {
+    constructor({ name, type, defaultHP, damageHP, attacks = [], img, selectors }) {
         super(selectors);
 
         this.name = name;
@@ -17,7 +19,8 @@ class Pokemon extends Selectors {
         this.defaultHP = defaultHP;
         this.damageHP = damageHP;
         this.attacks = attacks;
-        
+        this.img = img;
+            
         this.renderHP();
     }
     
@@ -31,16 +34,17 @@ class Pokemon extends Selectors {
             alert('Бедный ' + this.name + ' проиграл бой!');
             $btn.forEach(item => 
                 item.disabled = true);
-        const $control = document.querySelector('.control');
-        const $btnNewGame = document.createElement('button');
-        $btnNewGame.classList.add('button-restart');
-        $btnNewGame.innerText = 'Play again';
-        console.log($btnNewGame);
-        $control.appendChild($btnNewGame);
 
-        $btnNewGame.addEventListener('click', () => location.reload());
+                const $control = document.querySelector('.control');
+                const $btnNewGame = document.createElement('button');
+                $btnNewGame.classList.add('button-restart');
+                $btnNewGame.innerText = 'Play again';
+                
+                $control.appendChild($btnNewGame);
+        
+                $btnNewGame.addEventListener('click', () => location.reload());
         }
-       
+         
         this.renderHP();
         cb && cb(count);   
     }
