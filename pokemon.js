@@ -30,6 +30,9 @@ class Pokemon extends Selectors {
         const $btn = document.querySelectorAll('.button');
         
         if(this.damageHP <= 0) {
+            if(document.querySelector('.button-restart')) {
+                return;
+            } else {
             this.damageHP = 0;
             alert('Бедный ' + this.name + ' проиграл бой!');
             $btn.forEach(item => 
@@ -43,6 +46,7 @@ class Pokemon extends Selectors {
                 $control.appendChild($btnNewGame);
         
                 $btnNewGame.addEventListener('click', () => location.reload());
+            }
         }
          
         this.renderHP();
