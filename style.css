@@ -35,13 +35,12 @@ body {
 }
 
 .control {
-    width: 320px;
-    height: 260px;
+    width: 380px;
     position: relative;
     margin: 20px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-flow: wrap;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -272,14 +271,17 @@ body {
     border: 2px solid #ffc55b;
     border-radius: 10px;
     min-height: 30px;
+    width: 160px;
     vertical-align: middle;
-    padding: 12px 20px;
+    padding: 12px 10px;
     outline: none !important;
     cursor: pointer;
     font-size: 18px;
     margin-bottom: 26px;
 
 }
+
+
 .button:after {
     content: "";
     position: absolute;
@@ -301,6 +303,27 @@ body {
     background: -webkit-gradient(linear, left top, left bottom, from(#ffd78e), to(#ffc55b));
     background: linear-gradient(to bottom, #ffd78e, #ffc55b);
     box-shadow: 0 0 5px 2px white, 0 0 15px #ffe9c1, 0 3px 5px -2px rgba(0, 0, 0, 0.2);
+}
+
+.button-restart {
+    position: relative;
+    background: rgb(17, 226, 111);
+    border: 2px solid #ffc55b;
+    border-radius: 10px;
+    min-height: 30px;
+    width: 160px;
+    vertical-align: middle;
+    padding: 12px 10px;
+    outline: none !important;
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 26px;
+}
+
+.button-restart:hover {
+    background: -webkit-gradient(linear, left top, left bottom, from(#8bf1be), to(#34e03c));
+    background: linear-gradient(to bottom, #4fc74f, #28b32f);
+    border-color: white;
 }
 
 .candy {
@@ -474,4 +497,74 @@ h1 {
 .action label {
     padding: 6px 0;
 }
+
+.preloader {
+    /*фиксированное позиционирование*/
+    position: fixed;
+    /* координаты положения */
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    /* фоновый цвет элемента */
+    background: #e0e0e0;
+    /* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
+    z-index: 1001;
+  }
+  
+  .preloader__row {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    margin-top: -35px;
+    margin-left: -35px;
+    text-align: center;
+    animation: preloader-rotate 2s infinite linear;
+  }
+  
+  .preloader__item {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    background-color: #337ab7;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    animation: preloader-bounce 2s infinite ease-in-out;
+  }
+  
+  .preloader__item:last-child {
+    top: auto;
+    bottom: 0;
+    animation-delay: -1s;
+  }
+  
+  @keyframes preloader-rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes preloader-bounce {
+  
+    0%,
+    100% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1);
+    }
+  }
+  
+  .loaded_hiding .preloader {
+    transition: 0.3s opacity;
+    opacity: 0;
+  }
+  
+  .loaded .preloader {
+    display: none;
+  }
 
