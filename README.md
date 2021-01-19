@@ -1,5 +1,5 @@
 # JS_play
-Zar Zakharov JS Marathon
+Zar Zakharov JS Marathon (august'2020)
 
 Pokemon's fight is implemented using:
 - variables, data types, operators
